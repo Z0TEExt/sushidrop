@@ -15,9 +15,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
       child: ElevatedButton(
         onPressed: func,
         style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(20),
-            backgroundColor: x),
+          shape: const CircleBorder(),
+          backgroundColor: x,
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.025,
+          ),
+        ),
         child: Text(
           symbol,
           style: TextStyle(
@@ -48,9 +51,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
         ),
       ),
       backgroundColor: Colors.black,
-      body: Center(
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
@@ -198,14 +201,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height * 0.04,
+                    ),
                     child: SizedBox(
-                      width: 190,
+                      width: MediaQuery.of(context).size.height * 0.225,
                       child: ElevatedButton(
                         onPressed: () => providerRead.getnumFunc(0),
                         style: ElevatedButton.styleFrom(
                           shape: const StadiumBorder(),
-                          padding: const EdgeInsets.all(20),
+                          padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.height * 0.025,
+                          ),
                           alignment: Alignment.centerLeft,
                           backgroundColor:
                               const Color.fromARGB(255, 50, 50, 50),

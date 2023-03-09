@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'order_process.dart';
+import 'order_complete.dart';
 
 class StorePage extends StatefulWidget {
   final String storeName;
@@ -100,9 +100,11 @@ class _StorePageState extends State<StorePage> {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OrderProcess()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OrderComplete(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(

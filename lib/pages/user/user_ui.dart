@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import 'menu_store_page.dart';
+import 'store_page.dart';
 
 class UserWidget extends StatelessWidget {
   final String userName;
@@ -77,8 +77,18 @@ class UserWidget extends StatelessWidget {
                       mainAxisSpacing: 25,
                       children: const <Widget>[
                         StoreMenu(
+                          title: 'ข้าวปั้นโมฟุ',
+                          imgSrc: 'assets/images/food3.png',
+                          isSale: true,
+                          pushScreen: StorePage(
+                            storeName: 'ข้าวปั้นโมฟุ',
+                            storeImg: 'assets/images/food3.png',
+                          ),
+                        ),
+                        StoreMenu(
                           title: 'กะเพราประจำใจ',
                           imgSrc: 'assets/images/food1.png',
+                          isSale: false,
                           pushScreen: StorePage(
                             storeName: 'กะเพราประจำใจ',
                             storeImg: 'assets/images/food1.png',
@@ -87,6 +97,7 @@ class UserWidget extends StatelessWidget {
                         StoreMenu(
                           title: 'เบอร์เกอร์อะไรเอ่ย',
                           imgSrc: 'assets/images/food2.png',
+                          isSale: false,
                           pushScreen: StorePage(
                             storeName: 'เบอร์เกอร์อะไรเอ่ย',
                             storeImg: 'assets/images/food2.png',
@@ -108,12 +119,14 @@ class UserWidget extends StatelessWidget {
 class StoreMenu extends StatelessWidget {
   final String title;
   final String imgSrc;
+  final bool isSale;
   final Widget pushScreen;
 
   const StoreMenu(
       {super.key,
       required this.title,
       required this.imgSrc,
+      required this.isSale,
       required this.pushScreen});
 
   @override
@@ -143,24 +156,51 @@ class StoreMenu extends StatelessWidget {
                 withNavBar: false,
               );
             },
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Image.asset(
-                    imgSrc,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Color(0xFF505050),
-                      fontSize: 18,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                if (isSale)
+                  Positioned(
+                    top: 20,
+                    right: 20,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Text(
+                        '-25%',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
+                Column(
+                  children: <Widget>[
+                    const Spacer(),
+                    Expanded(
+                      flex: 3,
+                      child: Image.asset(
+                        imgSrc,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          color: Color(0xFF505050),
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
