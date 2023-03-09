@@ -2,7 +2,7 @@ name: sushidrop
 description: Delivery app project from an internship for a long time in 2 months.
 publish_to: "none"
 
-version: 1.0.2+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.18.6 <3.0.0"
