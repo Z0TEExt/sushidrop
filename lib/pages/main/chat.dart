@@ -25,8 +25,10 @@ class _ChatPageState extends State<ChatPage> {
   bool showSteam = false;
   String urlPath = urlServer;
   String urlPort = urlServerPort;
+  // late Uri url =
+  //     Uri.parse('ws://${urlPath.split('//')[1]}:$urlPort/ws/delivery/1/');
   late Uri url =
-      Uri.parse('ws://${urlPath.split('//')[1]}:$urlPort/ws/delivery/1/');
+      Uri.parse('wss://32c9-2001-fb1-10d-9885-54c0-a4a4-84f7-3715.ap.ngrok.io');
 
   late WebSocketChannel _channel;
   final TextEditingController _controller = TextEditingController();
@@ -244,7 +246,8 @@ class _ChatPageState extends State<ChatPage> {
               }
 
               if (snapshot.hasData) {
-                var temp = jsonDecode(jsonDecode(snapshot.data)["data"]);
+                var temp = jsonDecode(snapshot.data);
+
                 msgAll.insert(0, temp);
                 if (msgAll.length > 1) {
                   scorllController.animateTo(
