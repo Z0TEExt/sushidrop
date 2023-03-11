@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/data_store.dart';
@@ -30,6 +31,7 @@ class Main extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        builder: FToastBuilder(),
         theme: lightModeTheme(context),
         darkTheme: darkModeTheme(context),
         themeMode: ThemeMode.system,

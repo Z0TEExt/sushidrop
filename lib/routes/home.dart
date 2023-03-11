@@ -88,8 +88,8 @@ class _HomePageState extends State<HomePage> {
   List<Widget> appRoute() {
     return [
       homePage(),
-      // const OrderPage(),
-      const ChatPage(),
+      const OrderPage(),
+      // const ChatPage(),
       // const MapPage(),
       const MenuProject()
     ];

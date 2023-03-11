@@ -132,9 +132,28 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
     var query = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.navigate_before_rounded,
+            size: 30,
+            color: brightness ? const Color(0xFF505050) : Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Map',
+          style: TextStyle(
+            color: brightness ? const Color(0xFF505050) : Colors.white,
+          ),
+        ),
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

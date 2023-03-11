@@ -25,10 +25,8 @@ class _ChatPageState extends State<ChatPage> {
   bool showSteam = false;
   String urlPath = urlServer;
   String urlPort = urlServerPort;
-  // late Uri url =
-  //     Uri.parse('ws://${urlPath.split('//')[1]}:$urlPort/ws/delivery/1/');
   late Uri url =
-      Uri.parse('wss://32c9-2001-fb1-10d-9885-54c0-a4a4-84f7-3715.ap.ngrok.io');
+      Uri.parse('ws://${urlPath.split('//')[1]}:$urlPort/ws/delivery/1/');
 
   late WebSocketChannel _channel;
   final TextEditingController _controller = TextEditingController();
@@ -54,15 +52,25 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
     var imgStore = context.read<ImgStore>();
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.navigate_before_rounded,
+            size: 30,
+            color: brightness ? const Color(0xFF505050) : Colors.white,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Chat Room',
           style: TextStyle(
-            color: Color(0xFF505050),
+            color: brightness ? const Color(0xFF505050) : Colors.white,
           ),
         ),
       ),

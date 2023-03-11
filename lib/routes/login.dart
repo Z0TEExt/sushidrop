@@ -37,7 +37,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
 
     return SafeArea(
       child: Scaffold(
@@ -167,18 +168,18 @@ class _LoginPageState extends State<LoginPage> {
                                     vertical: 18, horizontal: 30),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: brightness == Brightness.light
+                                      color: brightness
                                           ? Colors.white
                                           : Colors.black),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                fillColor: brightness == Brightness.light
+                                fillColor: brightness
                                     ? Colors.white
                                     : const Color(0xFF303030),
                                 filled: true,
                               ),
                               style: TextStyle(
-                                color: brightness == Brightness.light
+                                color: brightness
                                     ? const Color(0xFF505050)
                                     : Colors.white,
                                 fontSize: 18,
@@ -209,18 +210,18 @@ class _LoginPageState extends State<LoginPage> {
                                     vertical: 18, horizontal: 30),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: brightness == Brightness.light
+                                      color: brightness
                                           ? Colors.white
                                           : Colors.black),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                fillColor: brightness == Brightness.light
+                                fillColor: brightness
                                     ? Colors.white
                                     : const Color(0xFF303030),
                                 filled: true,
                               ),
                               style: TextStyle(
-                                color: brightness == Brightness.light
+                                color: brightness
                                     ? const Color(0xFF505050)
                                     : Colors.white,
                                 fontSize: 18,
@@ -258,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: brightness == Brightness.light
+                              backgroundColor: brightness
                                   ? const Color(0xFF303030)
                                   : Colors.white,
                               shape: const StadiumBorder(),
@@ -270,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 'Sign In',
                                 style: TextStyle(
-                                  color: brightness == Brightness.light
+                                  color: brightness
                                       ? Colors.white
                                       : const Color(0xFF303030),
                                   fontSize: 18,

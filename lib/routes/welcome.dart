@@ -99,7 +99,8 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery.of(context).platformBrightness;
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
     var query = MediaQuery.of(context).size;
 
     return WillPopScope(
@@ -124,9 +125,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   Text(
                     'SushiDrop',
                     style: TextStyle(
-                      color: brightness == Brightness.light
-                          ? const Color(0xFF505050)
-                          : Colors.white,
+                      color:
+                          brightness ? const Color(0xFF505050) : Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                     ),
@@ -134,9 +134,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   Text(
                     'Delivery',
                     style: TextStyle(
-                      color: brightness == Brightness.light
-                          ? const Color(0xFF505050)
-                          : Colors.white,
+                      color:
+                          brightness ? const Color(0xFF505050) : Colors.white,
                       fontSize: 16,
                       letterSpacing: 4,
                       fontWeight: FontWeight.w700,

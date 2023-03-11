@@ -20,96 +20,97 @@ class UserWidget extends StatelessWidget {
             ),
           ),
           SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                const SizedBox(height: 50),
-                const Text(
-                  "สวัสดีวันจันทร์ เช้าที่สดใส",
-                  style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 30,
-                  ),
-                ),
-                Text(
-                  "คุณ $userName",
-                  style: const TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 26,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 30),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'วันนี้กินอะไรดี?',
-                      border: InputBorder.none,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  const SizedBox(height: 50),
+                  const Text(
+                    "สวัสดีวันจันทร์ เช้าที่สดใส",
+                    style: TextStyle(
+                      color: Color(0xFF505050),
+                      fontSize: 30,
                     ),
                   ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
-                    'ร้านอาหารที่คุณเคยกิน',
-                    style: TextStyle(
+                  Text(
+                    "คุณ $userName",
+                    style: const TextStyle(
                       color: Color(0xFF505050),
                       fontSize: 26,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 25,
-                      mainAxisSpacing: 25,
-                      children: const <Widget>[
-                        StoreMenu(
-                          title: 'ข้าวปั้นโมฟุ',
-                          imgSrc: 'assets/images/food3.png',
-                          isSale: true,
-                          pushScreen: StorePage(
-                            storeName: 'ข้าวปั้นโมฟุ',
-                            storeImg: 'assets/images/food3.png',
-                          ),
-                        ),
-                        StoreMenu(
-                          title: 'กะเพราประจำใจ',
-                          imgSrc: 'assets/images/food1.png',
-                          isSale: false,
-                          pushScreen: StorePage(
-                            storeName: 'กะเพราประจำใจ',
-                            storeImg: 'assets/images/food1.png',
-                          ),
-                        ),
-                        StoreMenu(
-                          title: 'เบอร์เกอร์อะไรเอ่ย',
-                          imgSrc: 'assets/images/food2.png',
-                          isSale: false,
-                          pushScreen: StorePage(
-                            storeName: 'เบอร์เกอร์อะไรเอ่ย',
-                            storeImg: 'assets/images/food2.png',
-                          ),
-                        )
-                      ],
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 30),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        hintText: 'วันนี้กินอะไรดี?',
+                        border: InputBorder.none,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      'ร้านอาหารที่คุณเคยกิน',
+                      style: TextStyle(
+                        color: Color(0xFF505050),
+                        fontSize: 26,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 25,
+                        mainAxisSpacing: 25,
+                        children: const <Widget>[
+                          StoreMenu(
+                            title: 'ข้าวปั้นโมฟุ',
+                            imgSrc: 'assets/images/food3.png',
+                            isSale: true,
+                            pushScreen: StorePage(
+                              storeName: 'ข้าวปั้นโมฟุ',
+                              storeImg: 'assets/images/food3.png',
+                            ),
+                          ),
+                          StoreMenu(
+                            title: 'กะเพราประจำใจ',
+                            imgSrc: 'assets/images/food1.png',
+                            isSale: false,
+                            pushScreen: StorePage(
+                              storeName: 'กะเพราประจำใจ',
+                              storeImg: 'assets/images/food1.png',
+                            ),
+                          ),
+                          StoreMenu(
+                            title: 'เบอร์เกอร์อะไรเอ่ย',
+                            imgSrc: 'assets/images/food2.png',
+                            isSale: false,
+                            pushScreen: StorePage(
+                              storeName: 'เบอร์เกอร์อะไรเอ่ย',
+                              storeImg: 'assets/images/food2.png',
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ))
+          )
         ],
       ),
     );

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../../widgets/toast.dart';
+import 'order_process.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -8,8 +13,20 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+  FToast? fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast!.init(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -19,10 +36,10 @@ class _OrderPageState extends State<OrderPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'ออเดอร์ของคุณ',
               style: TextStyle(
-                color: Color(0xFF505050),
+                color: brightness ? const Color(0xFF505050) : Colors.white,
                 fontSize: 30,
               ),
             ),
@@ -70,50 +87,80 @@ class _OrderPageState extends State<OrderPage> {
   }
 
   Widget orderState(int state) {
+    int error = 0;
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: MediaQuery.of(context).size.height * 0.02,
         horizontal: MediaQuery.of(context).size.height * 0.025,
       ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 30,
-        horizontal: 30,
-      ),
       decoration: BoxDecoration(
         color: const Color(0xFFFBE8C6),
         borderRadius: BorderRadius.circular(50),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text.rich(
-            TextSpan(children: [
-              WidgetSpan(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.circle,
-                    color: checkOrderState(state),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              if (state >= 0 && state <= 3) {
+                PersistentNavBarNavigator.pushNewScreen(
+                  context,
+                  screen: const OrderProcess(),
+                  withNavBar: false,
+                );
+              } else {
+                if (error < 3) {
+                  fToast!.showToast(
+                    child: const ToastMessage(
+                      msg: 'เกิดข้อผิดพลาด',
+                    ),
+                    gravity: ToastGravity.BOTTOM,
+                    toastDuration: const Duration(seconds: 2),
+                  );
+                  error += 1;
+                }
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Icon(
+                              Icons.circle,
+                              color: checkOrderState(state),
+                            ),
+                          ),
+                        ),
+                        TextSpan(
+                          text: checkOrderText(state),
+                          style: const TextStyle(
+                            color: Color(0xFF505050),
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  Text(
+                    'Order #00$state',
+                    style: const TextStyle(
+                      color: Color(0xFF505050),
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
               ),
-              TextSpan(
-                text: checkOrderText(state),
-                style: const TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 20,
-                ),
-              ),
-            ]),
-          ),
-          Text(
-            'Order #00$state',
-            style: const TextStyle(
-              color: Color(0xFF505050),
-              fontSize: 20,
             ),
           ),
-        ],
+        ),
       ),
     );
   }

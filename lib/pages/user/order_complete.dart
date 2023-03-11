@@ -12,6 +12,8 @@ class OrderComplete extends StatefulWidget {
 class _OrderCompleteState extends State<OrderComplete> {
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        MediaQuery.of(context).platformBrightness == Brightness.light;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -23,10 +25,11 @@ class _OrderCompleteState extends State<OrderComplete> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/waiting_man.png'),
-                  const Text(
+                  Text(
                     'ออเดอร์ของคุณกำลังถูกจัดเตรียม โปรดรอสักครู่...',
                     style: TextStyle(
-                      color: Color(0xFF505050),
+                      color:
+                          brightness ? const Color(0xFF505050) : Colors.white,
                       fontSize: 18,
                     ),
                   )
